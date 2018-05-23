@@ -8,33 +8,33 @@
             padding: 0;
             margin: 0;
         }
-        #ball {
+        .ball {
             width:12px;
             height:12px;
             background: #5EA345;
             border-radius: 50%;
             position: fixed;
-            transition: left 1s linear, top 1s ease-in;
         }
     </style>
     <title>CSS3 水平抛物线动画</title>
 </head>
-<body style="width:100%;height:100%;">
-    <div id="ball"></div>
+<body>
 </body>
 <script>
-    var $ball = document.getElementById('ball');
-    document.body.onclick = function (evt) {
-        console.log(evt.pageX,evt.pageY)
-        $ball.style.top = evt.pageY+'px';
-        $ball.style.left = evt.pageX+'px';
-        $ball.style.transition = 'left 0s, top 0s';
-        setTimeout(()=>{
-            $ball.style.top = window.innerHeight+'px';
-            $ball.style.left = '0px';
-            $ball.style.background = 'red';
-            $ball.style.transition = 'left 1s linear, top 1s ease-in, background 1s ease-out';
-        }, 20)
-    }
+	let body = document.documentElement;
+	body.addEventListener('click', (evt) => {
+		let ball = document.createElement('div');
+		let left = evt.pageX;
+		let top = evt.pageY;
+		ball.classList.add('ball');
+		ball.style.left = left+'px';
+		ball.style.top = top+'px';
+		body.append(ball);
+		setTimeout(() => {
+			ball.style.left = 0;
+			ball.style.top = window.innerHeight+'px';
+			ball.style.transition = 'left 200ms linear, top 200ms ease-in';
+		}, 20)
+	})
 </script>
 </html>
